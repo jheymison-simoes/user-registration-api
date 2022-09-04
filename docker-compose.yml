@@ -1,0 +1,44 @@
+version: '3.4'
+
+services:
+  userregister.api:
+    image: userregisterapi
+    build:
+      context: .
+      dockerfile: src/UserRegister.Api/Dockerfile
+    dns:
+      - 8.8.8.8
+    ports:
+      - "5015:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    networks:
+      - user-register
+    volumes:
+      - ~/.config/:/root/.config
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    container_name: postgres-user-register
+    restart: always
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: UserRegister123456
+      POSTGRES_DB: dbUserRegister
+    ports:
+      - "15437:5432"
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data 
+    networks:
+      - user-register
+
+volumes:
+    postgres-volume:
+        driver: local
+
+networks: 
+  user-register:
+    driver: bridge
