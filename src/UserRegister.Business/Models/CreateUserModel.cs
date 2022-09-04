@@ -1,31 +1,26 @@
 ﻿using System.Globalization;
 using System.Resources;
 using FluentValidation;
-using FluentValidation.Results;
+using UserRegister.Business.EntityModels;
 using UserRegister.Business.Exceptions;
-using UserRegister.Business.Models;
 using UserRegister.Business.Utils;
 
-namespace UserRegister.Business.EntityModels;
+namespace UserRegister.Business.Models;
 
-public class User : Entity
+public class CreateUserModel
 {
     public string Name { get; set; }
     public bool LegalPerson { get; set; }
     public string Cpf { get; set; }
     public string Cnpj { get; set; }
     public string CorporateName { get; set; }
-    public Guid AddressId { get; set; }
-
-    #region RelacionShip
-    public Address Address { get; set; }
-    public List<UserPhone> UserPhones { get; set; }
-    #endregion
+    public CreateUserAddressModel Address { get; set; }
+    public List<CreateUserPhoneModel> UserPhones { get; set; }
 }
 
-public class UserValidador : AbstractValidator<User>
+public class CreateUserValidator : AbstractValidator<CreateUserModel>
 {
-    public UserValidador(ResourceManager resourceManager, CultureInfo cultureInfo)
+    public CreateUserValidator(ResourceManager resourceManager, CultureInfo cultureInfo)
     {
         var resourceSet = resourceManager.GetResourceSet(cultureInfo, true, true);
 
@@ -57,12 +52,15 @@ public class UserValidador : AbstractValidator<User>
         });
         
         RuleFor(u => u.Address)
-            .SetValidator(new AddressValidator(resourceManager, cultureInfo));
-    }
+            .SetValidator(new CreateUserAddressValidator(resourceManager, cultureInfo));
 
-    public async Task Validate(User user, ResourceManager resourceManager, CultureInfo cultureInfo)
+        RuleForEach(u => u.UserPhones)
+            .SetValidator(new CreateUserPhoneValidator(resourceManager, cultureInfo));
+    }
+    
+    public async Task Validate(CreateUserModel user, ResourceManager resourceManager, CultureInfo cultureInfo)
     {
-        var validador = new UserValidador(resourceManager, cultureInfo);
+        var validador = new CreateUserValidator(resourceManager, cultureInfo);
         var result = await validador.ValidateAsync(user);
         if (result.IsValid) return;
         throw new CustomException(string.Join(" ", result.Errors));

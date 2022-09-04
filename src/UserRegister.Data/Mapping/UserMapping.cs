@@ -50,7 +50,7 @@ public class UserMapping : IEntityTypeConfiguration<User>
         #region RelacionShip
         builder.HasOne(b => b.Address)
             .WithOne(b => b.User)
-            .HasForeignKey<Address>(b => b.Id)
+            .HasForeignKey<User>(b => b.AddressId)
             .HasConstraintName("fk_user_addressId");
         #endregion
 

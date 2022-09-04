@@ -117,4 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ADDRESS-CITY_EMPTY" xml:space="preserve">
+    <value>A cidade do endereço não pode ser vazia.</value>
+  </data>
+  <data name="ADDRESS-DISTRICT_EMPTY" xml:space="preserve">
+    <value>O bairro do endereço não pode ser vazia.</value>
+  </data>
+  <data name="ADDRESS-NUMBER_EMPTY" xml:space="preserve">
+    <value>O numero do endereço não pode ser vazio.</value>
+  </data>
+  <data name="ADDRESS-POSTALCODE_EMPTY" xml:space="preserve">
+    <value>O código postal não pode ser vazio.</value>
+  </data>
+  <data name="ADDRESS-STATE_EMPTY" xml:space="preserve">
+    <value>O estado do endereço não pode ser vazio.</value>
+  </data>
+  <data name="ADDRESS-STREET_EMPTY" xml:space="preserve">
+    <value>A rua do endereço não pode ser vazio.</value>
+  </data>
+  <data name="USER-CNPJ_EMPTY" xml:space="preserve">
+    <value>O CNPJ do usuário não pode ser vazio.</value>
+  </data>
+  <data name="USER-CNPJ_EXCEEDED_MAXIMUM_CHARACTER" xml:space="preserve">
+    <value>O CNJP do usuário não pode ultrapassar ou ser menor que '{0}' caracteres.</value>
+  </data>
+  <data name="USER-CORPORATENAME_EMPTY" xml:space="preserve">
+    <value>O nome da empresa não pode ser vazio.</value>
+  </data>
+  <data name="USER-CORPORATENAME_EXCEEDED_MAXIMUM_CHARACTER" xml:space="preserve">
+    <value>O nome da emrpesa não pode ultrapassar ou ser menor que '{0}' caracteres.</value>
+  </data>
+  <data name="USER-CPF_EMPTY" xml:space="preserve">
+    <value>O CPF do usuário não pode ser vazio.</value>
+  </data>
+  <data name="USER-CPF_EXCEEDED_MAXIMUM_CHARACTER" xml:space="preserve">
+    <value>O CPF do usuário não pode ultrapassar ou ser menor que '{0}' caracteres</value>
+  </data>
+  <data name="USER-NAME_EMPTY" xml:space="preserve">
+    <value>O nome do usuário não pode ser vazio.</value>
+  </data>
+  <data name="USER-NAME_EXCEEDED_MAXIMUM_CHARACTER" xml:space="preserve">
+    <value>O nome do usuário não pode ultrapassar '{0}' caracteres.</value>
+  </data>
+  <data name="USER-PHONE-DDD_EMPTY" xml:space="preserve">
+    <value>O DDD do telefone não pode ser vazio.</value>
+  </data>
+  <data name="USER-PHONE-DDD_EXCEEDED_MAXIMUM_CHARACTER" xml:space="preserve">
+    <value>O DDD não pode ultrapassar '{0}' caracteres.</value>
+  </data>
+  <data name="USER-PHONE-NUMBERPHONE_EMPTY" xml:space="preserve">
+    <value>O numero de telefone não pode ser vazio.</value>
+  </data>
+  <data name="USER-PHONE-NUMBERPHONE_EXCEEDED_MAXIMUM_CHARACTER" xml:space="preserve">
+    <value>O numero de terlefone não pode ultrapassar '{0}'caracteres.</value>
+  </data>
+  <data name="USER-USER_EXISTING_BY_CPF" xml:space="preserve">
+    <value>Já existe um usuário com este mesmo CPF '{0}'</value>
+  </data>
 </root>

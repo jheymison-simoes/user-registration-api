@@ -23,12 +23,12 @@ public abstract class BaseController<TController> : ControllerBase
         return StatusCode((int)HttpStatusCode.OK, GenerateBaseResponse<T>(response));
     }
     
-    protected ActionResult<BaseResponse<string>> BaseResponseError(string messageError)
+    protected ActionResult<BaseResponse<T>> BaseResponseError<T>(string messageError)
     {
         return StatusCode((int)HttpStatusCode.BadRequest, GenerateBaseResponse(messageError));
     }
     
-    protected ActionResult<BaseResponse<string>> BaseResponseInternalError(string messageError)
+    protected ActionResult<BaseResponse<T>> BaseResponseInternalError<T>(string messageError)
     {
         return StatusCode((int)HttpStatusCode.InternalServerError, GenerateBaseResponse(messageError));
     }
