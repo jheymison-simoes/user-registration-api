@@ -59,5 +59,176 @@ namespace UserRegister.Api.Resource {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A cidade do endereço não pode ser vazia..
+        /// </summary>
+        internal static string ADDRESS_CITY_EMPTY {
+            get {
+                return ResourceManager.GetString("ADDRESS-CITY_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O bairro do endereço não pode ser vazia..
+        /// </summary>
+        internal static string ADDRESS_DISTRICT_EMPTY {
+            get {
+                return ResourceManager.GetString("ADDRESS-DISTRICT_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O numero do endereço não pode ser vazio..
+        /// </summary>
+        internal static string ADDRESS_NUMBER_EMPTY {
+            get {
+                return ResourceManager.GetString("ADDRESS-NUMBER_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O código postal não pode ser vazio..
+        /// </summary>
+        internal static string ADDRESS_POSTALCODE_EMPTY {
+            get {
+                return ResourceManager.GetString("ADDRESS-POSTALCODE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O estado do endereço não pode ser vazio..
+        /// </summary>
+        internal static string ADDRESS_STATE_EMPTY {
+            get {
+                return ResourceManager.GetString("ADDRESS-STATE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A rua do endereço não pode ser vazio..
+        /// </summary>
+        internal static string ADDRESS_STREET_EMPTY {
+            get {
+                return ResourceManager.GetString("ADDRESS-STREET_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O CNPJ do usuário não pode ser vazio..
+        /// </summary>
+        internal static string USER_CNPJ_EMPTY {
+            get {
+                return ResourceManager.GetString("USER-CNPJ_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O CNJP do usuário não pode ultrapassar ou ser menor que &apos;{0}&apos; caracteres..
+        /// </summary>
+        internal static string USER_CNPJ_EXCEEDED_MAXIMUM_CHARACTER {
+            get {
+                return ResourceManager.GetString("USER-CNPJ_EXCEEDED_MAXIMUM_CHARACTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O nome da empresa não pode ser vazio..
+        /// </summary>
+        internal static string USER_CORPORATENAME_EMPTY {
+            get {
+                return ResourceManager.GetString("USER-CORPORATENAME_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O nome da emrpesa não pode ultrapassar ou ser menor que &apos;{0}&apos; caracteres..
+        /// </summary>
+        internal static string USER_CORPORATENAME_EXCEEDED_MAXIMUM_CHARACTER {
+            get {
+                return ResourceManager.GetString("USER-CORPORATENAME_EXCEEDED_MAXIMUM_CHARACTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O CPF do usuário não pode ser vazio..
+        /// </summary>
+        internal static string USER_CPF_EMPTY {
+            get {
+                return ResourceManager.GetString("USER-CPF_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O CPF do usuário não pode ultrapassar ou ser menor que &apos;{0}&apos; caracteres.
+        /// </summary>
+        internal static string USER_CPF_EXCEEDED_MAXIMUM_CHARACTER {
+            get {
+                return ResourceManager.GetString("USER-CPF_EXCEEDED_MAXIMUM_CHARACTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O nome do usuário não pode ser vazio..
+        /// </summary>
+        internal static string USER_NAME_EMPTY {
+            get {
+                return ResourceManager.GetString("USER-NAME_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O nome do usuário não pode ultrapassar &apos;{0}&apos; caracteres..
+        /// </summary>
+        internal static string USER_NAME_EXCEEDED_MAXIMUM_CHARACTER {
+            get {
+                return ResourceManager.GetString("USER-NAME_EXCEEDED_MAXIMUM_CHARACTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O DDD do telefone não pode ser vazio..
+        /// </summary>
+        internal static string USER_PHONE_DDD_EMPTY {
+            get {
+                return ResourceManager.GetString("USER-PHONE-DDD_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O DDD não pode ultrapassar &apos;{0}&apos; caracteres..
+        /// </summary>
+        internal static string USER_PHONE_DDD_EXCEEDED_MAXIMUM_CHARACTER {
+            get {
+                return ResourceManager.GetString("USER-PHONE-DDD_EXCEEDED_MAXIMUM_CHARACTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O numero de telefone não pode ser vazio..
+        /// </summary>
+        internal static string USER_PHONE_NUMBERPHONE_EMPTY {
+            get {
+                return ResourceManager.GetString("USER-PHONE-NUMBERPHONE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O numero de terlefone não pode ultrapassar &apos;{0}&apos;caracteres..
+        /// </summary>
+        internal static string USER_PHONE_NUMBERPHONE_EXCEEDED_MAXIMUM_CHARACTER {
+            get {
+                return ResourceManager.GetString("USER-PHONE-NUMBERPHONE_EXCEEDED_MAXIMUM_CHARACTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Já existe um usuário com este mesmo CPF &apos;{0}&apos;.
+        /// </summary>
+        internal static string USER_USER_EXISTING_BY_CPF {
+            get {
+                return ResourceManager.GetString("USER-USER_EXISTING_BY_CPF", resourceCulture);
+            }
+        }
     }
 }

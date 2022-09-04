@@ -4,8 +4,6 @@ using AutoMapper;
 using UserRegister.Api.Configuration;
 using UserRegister.Application.Services;
 using UserRegister.Application.Tests.Utils;
-using UserRegister.Business.Interfaces.Repositories;
-using Moq;
 using Xunit;
 
 namespace UserRegister.Application.Tests.Fixture;
@@ -25,7 +23,6 @@ public class ExempleFixture : IDisposable
     {
         ResourceManager = new ResourceManager(typeof(Api.Resource.ApiResource));
         Mapper = MapperTests.Mapping<AutoMapperConfiguration>();
-        
         ExempleService = new ExempleService();
     }
     

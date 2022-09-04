@@ -19,6 +19,5 @@ public static class DataInjectionConfiguration
     
     private static void InjectionDependencyUniOfWork(IServiceCollection services)
     {
-
     }
 }

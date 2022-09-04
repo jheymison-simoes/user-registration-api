@@ -30,11 +30,11 @@ public class ExempleController : BaseController<ExempleController>
         }
         catch (CustomException cEx)
         {
-            return BaseResponseError(cEx.Message);
+            return BaseResponseError<string>(cEx.Message);
         }
         catch (Exception ex)
         {
-            return BaseResponseInternalError(ex.Message);
+            return BaseResponseInternalError<string>(ex.Message);
         }
     }
 }

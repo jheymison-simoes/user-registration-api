@@ -1,4 +1,5 @@
 ﻿using System.Resources;
+using UserRegister.Business.Exceptions;
 
 namespace UserRegister.Business.Utils;
 
@@ -15,4 +16,7 @@ public static class StringHelpers
     {
         return string.Format(message, args);
     }
+
+    public static string ResponseError(string error) => throw new CustomException(error);
+
 }
