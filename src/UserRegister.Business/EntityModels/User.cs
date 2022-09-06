@@ -15,6 +15,7 @@ public class User : Entity
     public string Cpf { get; set; }
     public string Cnpj { get; set; }
     public string CorporateName { get; set; }
+    public string Email { get; set; }
     public Guid AddressId { get; set; }
 
     #region RelacionShip
@@ -40,6 +41,12 @@ public class UserValidador : AbstractValidator<User>
             .WithMessage(resourceSet.GetResourceFormat("USER-CPF_EMPTY"))
             .MinimumLength(11)
             .WithMessage(resourceSet.GetResourceFormat("USER-CPF_EXCEEDED_MAXIMUM_CHARACTER", 11));
+        
+        RuleFor(u => u.Email)
+            .NotEmpty()
+            .WithMessage(resourceSet.GetResourceFormat("USER-EMAIL_EMPTY"))
+            .EmailAddress()
+            .WithMessage(resourceSet.GetResourceFormat("USER-EMAIL_INVALID"));
 
         When(u => u.LegalPerson, () =>
         {

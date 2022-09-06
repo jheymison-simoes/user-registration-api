@@ -15,7 +15,7 @@ public class ExempleCollection : ICollectionFixture<ExempleFixture>
 
 public class ExempleFixture : IDisposable
 {
-    public ExempleService ExempleService;
+    //public ExempleService ExempleService;
     public ResourceManager ResourceManager;
     public IMapper Mapper;
 
@@ -23,7 +23,7 @@ public class ExempleFixture : IDisposable
     {
         ResourceManager = new ResourceManager(typeof(Api.Resource.ApiResource));
         Mapper = MapperTests.Mapping<AutoMapperConfiguration>();
-        ExempleService = new ExempleService();
+        //ExempleService = new ExempleService();
     }
     
     public void Dispose()

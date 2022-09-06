@@ -7,6 +7,7 @@ public class CreateUserViewModel
     public string Cpf { get; set; }
     public string Cnpj { get; set; }
     public string CorporateName { get; set; }
+    public string Email { get; set; }
     public CreateUserAddressViewModel Address { get; set; }
     public List<CreateUserPhoneViewModel> UserPhones { get; set; }
 }

@@ -1,6 +1,8 @@
 ﻿using UserRegister.Application.Services;
 using UserRegister.Business.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
+using UserRegister.Application.Services.Clients;
+using UserRegister.Business.Interfaces.Services.Clients;
 using UserRegister.Business.Models;
 
 namespace UserRegister.Application.Configuration;
@@ -11,8 +13,9 @@ public static class ApplicationDependencyInjectConfiguration
     {
         #region Services
         services.AddScoped<BaseService>();
-        services.AddScoped<IExempleService, ExempleService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddTransient<IRequestProvider, RequestProvider>();
+        services.AddScoped<IViaCepService, ViaCepService>();
         #endregion
 
         #region Validators

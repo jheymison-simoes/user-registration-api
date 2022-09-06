@@ -39,7 +39,7 @@
 
     <ItemGroup>
       <EmbeddedResource Update="Resource\ApiResource.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
+        <Generator>PublicResXFileCodeGenerator</Generator>
         <LastGenOutput>ApiResource.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>

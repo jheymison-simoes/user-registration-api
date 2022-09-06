@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using UserRegister.Business.Models;
 using UserRegister.Data;
 
 namespace UserRegister.Api.Configuration;
@@ -10,9 +11,8 @@ public static class ApiConfig
     public static void AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddControllers();
-
         services.AddHealthChecks().AddDbContextCheck<SqlContext>();
-            
+
         services.AddDbContext<SqlContext>(options =>
         {
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
@@ -20,9 +20,7 @@ public static class ApiConfig
         });
             
         services.AddMemoryCache();
-
         services.AddAutoMapper(typeof(Startup));
-
         services.AddHttpContextAccessor();
 
         services.AddCors(options =>
@@ -47,19 +45,16 @@ public static class ApiConfig
             p.GroupNameFormat = "'v'VVV";
             p.SubstituteApiVersionInUrl = true;
         });
+        
+        services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
     }
     
     public static IApplicationBuilder UseApiConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
     {
-        if (env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
-                        
+        if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
+        
         app.UseRouting();
-
         app.UseCors("Total");
-
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapHealthChecks("/health/startup");
@@ -67,7 +62,6 @@ public static class ApiConfig
             endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions { Predicate = _ => false });
             endpoints.MapControllers();
         });
-
         return app;
     }
 }
