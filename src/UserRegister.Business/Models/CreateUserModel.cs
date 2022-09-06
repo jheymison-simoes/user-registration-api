@@ -14,6 +14,7 @@ public class CreateUserModel
     public string Cpf { get; set; }
     public string Cnpj { get; set; }
     public string CorporateName { get; set; }
+    public string Email { get; set; }
     public CreateUserAddressModel Address { get; set; }
     public List<CreateUserPhoneModel> UserPhones { get; set; }
 }
@@ -36,25 +37,32 @@ public class CreateUserValidator : AbstractValidator<CreateUserModel>
             .MinimumLength(11)
             .WithMessage(resourceSet.GetResourceFormat("USER-CPF_EXCEEDED_MAXIMUM_CHARACTER", 11));
 
-        When(u => u.LegalPerson, () =>
-        {
-            RuleFor(u => u.Cnpj)
-                .NotEmpty()
-                .WithMessage(resourceSet.GetResourceFormat("USER-CNPJ_EMPTY"))
-                .MinimumLength(14)
-                .WithMessage(resourceSet.GetResourceFormat("USER-CNPJ_EXCEEDED_MAXIMUM_CHARACTER", 14));
+        RuleFor(u => u.Email)
+            .NotEmpty()
+            .WithMessage(resourceSet.GetResourceFormat("USER-EMAIL_EMPTY"))
+            .EmailAddress()
+            .WithMessage(resourceSet.GetResourceFormat("USER-EMAIL_INVALID"));
+        
+        RuleFor(u => u.Cnpj)
+            .NotEmpty()
+            .Unless(x => !x.LegalPerson)
+            .WithMessage(resourceSet.GetResourceFormat("USER-CNPJ_EMPTY"))
+            .Length(14)
+            .WithMessage(resourceSet.GetResourceFormat("USER-CNPJ_EXCEEDED_MAXIMUM_CHARACTER", 14));
 
-            RuleFor(u => u.CorporateName)
-                .NotEmpty()
-                .WithMessage(resourceSet.GetResourceFormat("USER-CORPORATENAME_EMPTY"))
-                .MaximumLength(100)
-                .WithMessage(resourceSet.GetResourceFormat("USER-CORPORATENAME_EXCEEDED_MAXIMUM_CHARACTER", 100));
-        });
+        RuleFor(u => u.CorporateName)
+            .NotEmpty()
+            .Unless(x => !x.LegalPerson)
+            .WithMessage(resourceSet.GetResourceFormat("USER-CORPORATENAME_EMPTY"))
+            .MaximumLength(100)
+            .WithMessage(resourceSet.GetResourceFormat("USER-CORPORATENAME_EXCEEDED_MAXIMUM_CHARACTER", 100));
         
         RuleFor(u => u.Address)
             .SetValidator(new CreateUserAddressValidator(resourceManager, cultureInfo));
 
         RuleForEach(u => u.UserPhones)
+            .NotEmpty()
+            .WithMessage(resourceSet.GetResourceFormat("USER-USERPHONES_EMPTY"))
             .SetValidator(new CreateUserPhoneValidator(resourceManager, cultureInfo));
     }
     

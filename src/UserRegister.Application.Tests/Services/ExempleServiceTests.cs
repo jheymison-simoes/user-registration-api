@@ -14,12 +14,12 @@ public class ExempleServiceTests
         _exempleFixture = exempleFixture;
     }
     
-    [Fact(DisplayName = "Testar testes unitários")]
-    [Trait("Category", "Exemple Service")]
-    public async void Exemple_Test_UnitTestes()
-    {
-        _exempleFixture.GenerateExempleService();
-        var result = await _exempleFixture.ExempleService.GetString();
-        result.Should().Be("Exemple Service Success");
-    }
+    // [Fact(DisplayName = "Testar testes unitários")]
+    // [Trait("Category", "Exemple Service")]
+    // public async void Exemple_Test_UnitTestes()
+    // {
+    //     _exempleFixture.GenerateExempleService();
+    //     var result = await _exempleFixture.ExempleService.GetString();
+    //     result.Should().Be("Exemple Service Success");
+    // }
 }

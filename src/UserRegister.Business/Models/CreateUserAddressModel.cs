@@ -32,7 +32,9 @@ public class CreateUserAddressValidator : AbstractValidator<CreateUserAddressMod
         
         RuleFor(u => u.PostalCode)
             .NotEmpty()
-            .WithMessage(resourceSet.GetResourceFormat("ADDRESS-POSTALCODE_EMPTY"));
+            .WithMessage(resourceSet.GetResourceFormat("ADDRESS-POSTALCODE_EMPTY"))
+            .Length(8)
+            .WithMessage(resourceSet.GetResourceFormat("ADDRESS-POSTALCODE_INVALID"));
         
         RuleFor(u => u.District)
             .NotEmpty()

@@ -129,29 +129,41 @@
   <data name="ADDRESS-POSTALCODE_EMPTY" xml:space="preserve">
     <value>O código postal não pode ser vazio.</value>
   </data>
+  <data name="ADDRESS-POSTALCODE_INVALID" xml:space="preserve">
+    <value>O CEP deve ser um CEP válido (exemplo: 38380380).</value>
+  </data>
   <data name="ADDRESS-STATE_EMPTY" xml:space="preserve">
     <value>O estado do endereço não pode ser vazio.</value>
   </data>
   <data name="ADDRESS-STREET_EMPTY" xml:space="preserve">
     <value>A rua do endereço não pode ser vazio.</value>
   </data>
+  <data name="USER-ADDRESS-NOT_FOUND_ADDRESS_BY_POSTAL_CODE" xml:space="preserve">
+    <value>Não foi encontrado nenhum endereço com este CEP '{0}'.</value>
+  </data>
   <data name="USER-CNPJ_EMPTY" xml:space="preserve">
     <value>O CNPJ do usuário não pode ser vazio.</value>
   </data>
   <data name="USER-CNPJ_EXCEEDED_MAXIMUM_CHARACTER" xml:space="preserve">
-    <value>O CNJP do usuário não pode ultrapassar ou ser menor que '{0}' caracteres.</value>
+    <value>O CNJP do usuário deve ter '{0}' caracteres numéricos.</value>
   </data>
   <data name="USER-CORPORATENAME_EMPTY" xml:space="preserve">
     <value>O nome da empresa não pode ser vazio.</value>
   </data>
   <data name="USER-CORPORATENAME_EXCEEDED_MAXIMUM_CHARACTER" xml:space="preserve">
-    <value>O nome da emrpesa não pode ultrapassar ou ser menor que '{0}' caracteres.</value>
+    <value>O nome da emrpesa deve ter no máximo '{0}' caracteres.</value>
   </data>
   <data name="USER-CPF_EMPTY" xml:space="preserve">
     <value>O CPF do usuário não pode ser vazio.</value>
   </data>
   <data name="USER-CPF_EXCEEDED_MAXIMUM_CHARACTER" xml:space="preserve">
-    <value>O CPF do usuário não pode ultrapassar ou ser menor que '{0}' caracteres</value>
+    <value>O CPF do usuário não pode ultrapassar ou ser menor que '{0}' caracteres.</value>
+  </data>
+  <data name="USER-EMAIL_EMPTY" xml:space="preserve">
+    <value>O email não pode ser vazio.</value>
+  </data>
+  <data name="USER-EMAIL_INVALID" xml:space="preserve">
+    <value>O email deve ser um email válido (exemplo@exemplo.com).</value>
   </data>
   <data name="USER-NAME_EMPTY" xml:space="preserve">
     <value>O nome do usuário não pode ser vazio.</value>
@@ -169,9 +181,15 @@
     <value>O numero de telefone não pode ser vazio.</value>
   </data>
   <data name="USER-PHONE-NUMBERPHONE_EXCEEDED_MAXIMUM_CHARACTER" xml:space="preserve">
-    <value>O numero de terlefone não pode ultrapassar '{0}'caracteres.</value>
+    <value>O numero de telefone não pode ultrapassar '{0}' caracteres.</value>
   </data>
-  <data name="USER-USER_EXISTING_BY_CPF" xml:space="preserve">
-    <value>Já existe um usuário com este mesmo CPF '{0}'</value>
+  <data name="USER-USERPHONES_EMPTY" xml:space="preserve">
+    <value>O usuário deve possuir pelo menos um telefone de contato.</value>
+  </data>
+  <data name="USER-USERPHONE_EXISTINGS" xml:space="preserve">
+    <value>Já existe usuário com estes mesmos numeros de telefones: '{0}'.</value>
+  </data>
+  <data name="USER-USER_EXISTING_BY_CPF_OR_EMAIL" xml:space="preserve">
+    <value>Já existe um usuário com este mesmo CPF '{0}' ou Email '{1}'.</value>
   </data>
 </root>

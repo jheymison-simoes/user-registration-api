@@ -43,9 +43,13 @@ public class UserMapping : IEntityTypeConfiguration<User>
             .HasMaxLength(14)
             .HasColumnName("corporateName")
             .HasColumnOrder(7);
+        builder.Property(b => b.Email)
+            .IsRequired()
+            .HasColumnName("email")
+            .HasColumnOrder(8);
         builder.Property(b => b.AddressId)
             .HasColumnName("address_id")
-            .HasColumnOrder(8);
+            .HasColumnOrder(9);
 
         #region RelacionShip
         builder.HasOne(b => b.Address)

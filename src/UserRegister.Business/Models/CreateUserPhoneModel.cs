@@ -25,11 +25,11 @@ public class CreateUserPhoneValidator : AbstractValidator<CreateUserPhoneModel>
             .MaximumLength(2)
             .WithMessage(resourceSet.GetResourceFormat("USER-PHONE-DDD_EXCEEDED_MAXIMUM_CHARACTER", 2));
     
-        RuleFor(up => up.Ddd)
+        RuleFor(up => up.NumberPhone)
             .NotEmpty()
             .WithMessage(resourceSet.GetResourceFormat("USER-PHONE-NUMBERPHONE_EMPTY"))
             .MaximumLength(9)
-            .WithMessage(resourceSet.GetResourceFormat("USER-PHONE-NUMBERPHONE_EXCEEDED_MAXIMUM_CHARACTER", 11));
+            .WithMessage(resourceSet.GetResourceFormat("USER-PHONE-NUMBERPHONE_EXCEEDED_MAXIMUM_CHARACTER", 9));
     }
 
     public async Task Validate(CreateUserPhoneModel userPhone, ResourceManager resourceManager, CultureInfo cultureInfo)
