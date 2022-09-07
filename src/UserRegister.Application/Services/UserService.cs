@@ -26,6 +26,7 @@ public class UserService : BaseService, IUserService
 
     #region Inject Validators
     private readonly CreateUserValidator _createUserValidator;
+    private readonly UserValidador _userValidador;
     #endregion
     
     public UserService(
@@ -33,12 +34,14 @@ public class UserService : BaseService, IUserService
         CultureInfo cultureInfo,
         IMapper mapper,
         CreateUserValidator createUserValidator,
+        UserValidador userValidador,
         IUserRepository userRepository, 
         IViaCepService viaCepService) 
         : base(resourceManager, cultureInfo, mapper)
     {
         _userRepository = userRepository;
         _viaCepService = viaCepService;
+        _userValidador = userValidador;
         _createUserValidator = createUserValidator;
     }
     
@@ -55,6 +58,8 @@ public class UserService : BaseService, IUserService
             ? newUser.Address.District
             : addressViaCep.Bairro;
         newUser.Address.State = addressViaCep.Uf;
+
+        await _userValidador.Validate(newUser, ResourceManager, CultureInfo);
         
         _userRepository.Add(newUser);
         await _userRepository.SaveChanges();

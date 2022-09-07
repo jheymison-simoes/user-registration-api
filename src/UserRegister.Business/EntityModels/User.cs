@@ -47,22 +47,21 @@ public class UserValidador : AbstractValidator<User>
             .WithMessage(resourceSet.GetResourceFormat("USER-EMAIL_EMPTY"))
             .EmailAddress()
             .WithMessage(resourceSet.GetResourceFormat("USER-EMAIL_INVALID"));
-
-        When(u => u.LegalPerson, () =>
-        {
-            RuleFor(u => u.Cnpj)
-                .NotEmpty()
-                .WithMessage(resourceSet.GetResourceFormat("USER-CNPJ_EMPTY"))
-                .MinimumLength(14)
-                .WithMessage(resourceSet.GetResourceFormat("USER-CNPJ_EXCEEDED_MAXIMUM_CHARACTER", 14));
-
-            RuleFor(u => u.CorporateName)
-                .NotEmpty()
-                .WithMessage(resourceSet.GetResourceFormat("USER-CORPORATENAME_EMPTY"))
-                .MaximumLength(100)
-                .WithMessage(resourceSet.GetResourceFormat("USER-CORPORATENAME_EXCEEDED_MAXIMUM_CHARACTER", 100));
-        });
         
+        RuleFor(u => u.Cnpj)
+            .NotEmpty()
+            .Unless(u => !u.LegalPerson)
+            .WithMessage(resourceSet.GetResourceFormat("USER-CNPJ_EMPTY"))
+            .MinimumLength(14)
+            .WithMessage(resourceSet.GetResourceFormat("USER-CNPJ_EXCEEDED_MAXIMUM_CHARACTER", 14));
+
+        RuleFor(u => u.CorporateName)
+            .NotEmpty()
+            .Unless(u => !u.LegalPerson)
+            .WithMessage(resourceSet.GetResourceFormat("USER-CORPORATENAME_EMPTY"))
+            .MaximumLength(100)
+            .WithMessage(resourceSet.GetResourceFormat("USER-CORPORATENAME_EXCEEDED_MAXIMUM_CHARACTER", 100));
+
         RuleFor(u => u.Address)
             .SetValidator(new AddressValidator(resourceManager, cultureInfo));
     }
