@@ -1,4 +1,6 @@
-﻿using System.Resources;
+﻿using System.ComponentModel;
+using System.Reflection;
+using System.Resources;
 using UserRegister.Business.Exceptions;
 
 namespace UserRegister.Business.Utils;
@@ -16,7 +18,22 @@ public static class StringHelpers
     {
         return string.Format(message, args);
     }
+    
+    public static string GetEnumDescription(this Enum enumValue)
+    {
+        try
+        {
+            var attribute = enumValue.GetType()
+                .GetMember(enumValue.ToString())
+                .First()
+                .GetCustomAttribute<DescriptionAttribute>();
 
-    public static string ResponseError(string error) => throw new CustomException(error);
+            return attribute?.Description;
+        }
+        catch (Exception)
+        {
+            return string.Empty;
+        }
+    }
 
 }
