@@ -9,9 +9,9 @@ services:
     dns:
       - 8.8.8.8
     ports:
-      - "5015:80"
+      - "51080:80"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
     networks:
       - user-register

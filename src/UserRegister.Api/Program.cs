@@ -1,4 +1,7 @@
 
+using UserRegister.Business.Enums;
+using UserRegister.Business.Utils;
+
 namespace UserRegister.Api;
 
 public class Program
@@ -15,5 +18,9 @@ public class Program
 
     private static void Build(IConfigurationBuilder builder)
     {
+        var enviromentBuild = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        if (enviromentBuild == EnvironmentBuildEnum.Development.GetEnumDescription() ||
+            enviromentBuild == EnvironmentBuildEnum.Docker.GetEnumDescription())
+            builder.AddJsonFile($"appsettings.{enviromentBuild}.json", false);
     }
 }

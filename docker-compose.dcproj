@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>660b382e-bea9-4846-a581-2a0ece2defbe</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:51080/swagger</DockerServiceUrl>
     <DockerServiceName>userregister.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>

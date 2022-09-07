@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Resources;
 using AutoMapper;
@@ -11,7 +12,7 @@ using UserRegister.Business.EntityModels;
 using UserRegister.Business.Interfaces.Repositories;
 using UserRegister.Business.Interfaces.Services.Clients;
 using UserRegister.Business.Models;
-using UserRegister.Data.Repositories;
+using UserRegister.Business.Models.Clients;
 using Xunit;
 
 namespace UserRegister.Application.Tests.Fixture;
@@ -53,18 +54,72 @@ public class UserFixture : IDisposable
         );
     }
 
-    public CreateUserModel CreateInvalidUser()
+    // public CreateUserModel CreateInvalidUser()
+    // {
+    //     return new Faker<CreateUserModel>("pt_BR")
+    //         .CustomInstantiator(f => new CreateUserModel()
+    //         {
+    //             Name = f.Name.FullName(),
+    //             Cpf = null,
+    //             LegalPerson = false,
+    //             Email = f.Internet.Email()
+    //         });
+    // }
+    
+    public CreateUserModel CreateValidUser()
     {
         return new Faker<CreateUserModel>("pt_BR")
             .CustomInstantiator(f => new CreateUserModel()
             {
                 Name = f.Name.FullName(),
-                Cpf = null,
+                Cpf = f.Random.ReplaceNumbers("###########"),
                 LegalPerson = false,
-                Email = f.Internet.Email()
+                Email = f.Internet.Email(),
+                Address = new CreateUserAddressModel()
+                {
+                    City = f.Address.City(),
+                    District = f.Address.FullAddress(),
+                    Number = f.Address.BuildingNumber(),
+                    State = f.Address.State(),
+                    Street = f.Address.StreetName(),
+                    PostalCode = f.Address.ZipCode("########")
+                },
+                UserPhones = new List<CreateUserPhoneModel>()
+                {
+                    new CreateUserPhoneModel()
+                    {
+                        Ddd = f.Random.Int(10, 50).ToString(),
+                        NumberPhone = f.Phone.PhoneNumber("#########")
+                    }
+                }
             });
     }
-    
+
+    public ViaCepResponseModel CreateViaCepResponseModel()
+    {
+        return new Faker<ViaCepResponseModel>("pt_BR")
+            .CustomInstantiator(f => new ViaCepResponseModel()
+            {
+                Bairro = f.Address.FullAddress(),
+                Cep = f.Address.ZipCode("########"),
+                Complemento = f.Address.FullAddress(),
+                Ddd = f.Random.ReplaceNumbers("##"),
+                Gia = f.Random.String2(1, 40),
+                Ibge = f.Random.ReplaceNumbers("####"),
+                Localidade = f.Address.City(),
+                Logradouro = f.Address.StreetAddress(),
+                Siafi = f.Random.ReplaceNumbers("####"),
+                Uf = f.Random.Replace("??")
+            });
+    }
+
+    public string GetMessageResource(string resouceName, params object[] args)
+    {
+        return args.Length == 0 
+            ? ResourceManager.GetString(resouceName)! 
+            : string.Format(ResourceManager.GetString(resouceName)!, args);
+    }
+
     public void Dispose()
     {
     }
