@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Resources;
 using AutoMapper;
 using Bogus;
@@ -53,18 +54,6 @@ public class UserFixture : IDisposable
             ViaCepService.Object
         );
     }
-
-    // public CreateUserModel CreateInvalidUser()
-    // {
-    //     return new Faker<CreateUserModel>("pt_BR")
-    //         .CustomInstantiator(f => new CreateUserModel()
-    //         {
-    //             Name = f.Name.FullName(),
-    //             Cpf = null,
-    //             LegalPerson = false,
-    //             Email = f.Internet.Email()
-    //         });
-    // }
     
     public CreateUserModel CreateValidUser()
     {
@@ -93,6 +82,35 @@ public class UserFixture : IDisposable
                     }
                 }
             });
+    }
+    
+    public List<CreateUserModel> CreateValidUsers(int quantity)
+    {
+        return new Faker<CreateUserModel>("pt_BR")
+            .CustomInstantiator(f => new CreateUserModel()
+            {
+                Name = f.Name.FullName(),
+                Cpf = f.Random.ReplaceNumbers("###########"),
+                LegalPerson = false,
+                Email = f.Internet.Email(),
+                Address = new CreateUserAddressModel()
+                {
+                    City = f.Address.City(),
+                    District = f.Address.FullAddress(),
+                    Number = f.Address.BuildingNumber(),
+                    State = f.Address.State(),
+                    Street = f.Address.StreetName(),
+                    PostalCode = f.Address.ZipCode("########")
+                },
+                UserPhones = new List<CreateUserPhoneModel>()
+                {
+                    new CreateUserPhoneModel()
+                    {
+                        Ddd = f.Random.Int(10, 50).ToString(),
+                        NumberPhone = f.Phone.PhoneNumber("#########")
+                    }
+                }
+            }).Generate(quantity);
     }
 
     public ViaCepResponseModel CreateViaCepResponseModel()

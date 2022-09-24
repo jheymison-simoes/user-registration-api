@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using FluentAssertions;
@@ -7,6 +8,7 @@ using UserRegister.Application.Tests.Fixture;
 using UserRegister.Business.EntityModels;
 using UserRegister.Business.Exceptions;
 using UserRegister.Business.Models.Clients;
+using UserRegister.Business.Response;
 using Xunit;
 
 namespace UserRegister.Application.Tests.Services;
@@ -145,5 +147,26 @@ public class UserServiceTests
 
         //Assert
         result.Should().NotBeNull();
+    }
+    
+    [Fact(DisplayName = "Get all user")]
+    [Trait("Category", "User Service")]
+    public async void User_GetAll_WithSuccess()
+    {
+        // Arrange
+        _userFixture.GenerateUserService();
+        var createdUsers = _userFixture.CreateValidUsers(10);
+        var users = _userFixture.Mapper.Map<List<User>>(createdUsers);
+
+        _userFixture.UserRepository.Setup(s =>
+            s.GetAll()
+        ).ReturnsAsync(users);
+        
+        // Act
+        var result = await _userFixture.UserService.GetAll();
+
+        //Assert
+        result.Should().NotBeNull();
+        result.Should().HaveCount(users.Count);
     }
 }

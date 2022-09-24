@@ -13,9 +13,6 @@ namespace UserRegister.Application.Services;
 
 public class UserService : BaseService, IUserService
 {
-    #region Inject Configs
-    #endregion
-
     #region Inject Repositories
     private readonly IUserRepository _userRepository;
     #endregion
@@ -66,7 +63,23 @@ public class UserService : BaseService, IUserService
         
         return Mapper.Map<UserResponse>(newUser);
     }
+
+    public async Task<List<UserResponse>> GetAll()
+    {
+        var allUsers = await _userRepository.GetAll();
+        return !allUsers.Any()
+            ? new() 
+            : Mapper.Map<List<UserResponse>>(allUsers);
+    }
     
+    public async Task<UserResponse> Delete(Guid id)
+    {
+        var user = await GetAndValidateUserById(id, true);
+        _userRepository.Remove(user);
+        await _userRepository.SaveChanges();
+        return Mapper.Map<UserResponse>(user);
+    }
+
     #region Private Methods
     private async Task CheckExistingUser(string cpf, string email)
     {
@@ -93,6 +106,13 @@ public class UserService : BaseService, IUserService
         var getAddressByCep = await _viaCepService.GetAddressByPostalCode(postalCode);
         if (getAddressByCep is null) ResponseError("USER-ADDRESS-NOT_FOUND_ADDRESS_BY_POSTAL_CODE", postalCode);
         return getAddressByCep;
+    }
+
+    private async Task<User> GetAndValidateUserById(Guid id, bool withInclude)
+    {
+        var user = await _userRepository.GetById(id, true);
+        if (user is null) ResponseError("USER-NOT_FOUND_BY_ID", id);
+        return user; 
     }
     #endregion
 }

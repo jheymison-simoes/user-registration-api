@@ -48,4 +48,40 @@ public class UserController : BaseController<UserController>
             return BaseResponseInternalError<UserResponse>(ex.Message);
         }
     }
+    
+    [HttpGet]
+    public async Task<ActionResult<BaseResponse<List<UserResponse>>>> GetAll()
+    {
+        try
+        {
+            var result = await _userService.GetAll();
+            return BaseResponseSuccess(result);
+        }
+        catch (CustomException cEx)
+        {
+            return BaseResponseError<List<UserResponse>>(cEx.Message);
+        }
+        catch (Exception ex)
+        {
+            return BaseResponseInternalError<List<UserResponse>>(ex.Message);
+        }
+    }
+    
+    [HttpDelete("/{id:guid}")]
+    public async Task<ActionResult<BaseResponse<UserResponse>>> Delete(Guid id)
+    {
+        try
+        {
+            var result = await _userService.Delete(id);
+            return BaseResponseSuccess(result);
+        }
+        catch (CustomException cEx)
+        {
+            return BaseResponseError<UserResponse>(cEx.Message);
+        }
+        catch (Exception ex)
+        {
+            return BaseResponseInternalError<UserResponse>(ex.Message);
+        }
+    }
 }

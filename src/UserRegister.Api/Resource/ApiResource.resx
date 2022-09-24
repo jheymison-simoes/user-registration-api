@@ -171,6 +171,9 @@
   <data name="USER-NAME_EXCEEDED_MAXIMUM_CHARACTER" xml:space="preserve">
     <value>O nome do usuário não pode ultrapassar '{0}' caracteres.</value>
   </data>
+  <data name="USER-NOT_FOUND_BY_ID" xml:space="preserve">
+    <value>Não foi encontrado nenhum usuário com este id '{0}'.</value>
+  </data>
   <data name="USER-PHONE-DDD_EMPTY" xml:space="preserve">
     <value>O DDD do telefone não pode ser vazio.</value>
   </data>

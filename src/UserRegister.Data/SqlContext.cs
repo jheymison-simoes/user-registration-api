@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using UserRegister.Business.Models;
 using UserRegister.Business.EntityModels;
+using UserRegister.Data.Configuration;
 
 namespace UserRegister.Data;
 
