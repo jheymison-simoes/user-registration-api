@@ -11,11 +11,9 @@ using UserRegister.Business.Response;
 namespace UserRegister.Api.Controllers;
 
 [ApiController]
-[ApiVersion("1")]
-[Route("api/v{version:apiVersion}/[controller]")]
+[Route("api/[controller]")]
 public class UserController : BaseController<UserController>
 {
-    private readonly ResourceSet _resourceSet;
     private readonly IUserService _userService;
     
     public UserController(
@@ -26,7 +24,7 @@ public class UserController : BaseController<UserController>
         IUserService userService) 
         : base(logger, mapper)
     {
-        _resourceSet = resourceManager.GetResourceSet(cultureInfo, true, true);
+        resourceManager.GetResourceSet(cultureInfo, true, true);
         _userService = userService;
     }
     
@@ -67,7 +65,7 @@ public class UserController : BaseController<UserController>
         }
     }
     
-    [HttpDelete("/{id:guid}")]
+    [HttpDelete("{id:guid}")]
     public async Task<ActionResult<BaseResponse<UserResponse>>> Delete(Guid id)
     {
         try

@@ -20,6 +20,17 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 
         return await query.FirstOrDefaultAsync(u => u.Id == id);
     }
+
+    public async Task<List<User>> GetAll(bool withInclude = false)
+    {
+        var query = _dbSet.AsQueryable().AsNoTracking();
+        if (withInclude)
+            query = query
+                .Include(u => u.Address)
+                .Include(u => u.UserPhones);
+
+        return await query.ToListAsync();
+    }
     
     #region User Phones
     public async Task<bool> ExistingPhone(string ddd, string numberPhone)

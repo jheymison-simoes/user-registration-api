@@ -65,12 +65,11 @@ public class UserValidador : AbstractValidator<User>
         RuleFor(u => u.Address)
             .SetValidator(new AddressValidator(resourceManager, cultureInfo));
     }
-
-    public async Task Validate(User user, ResourceManager resourceManager, CultureInfo cultureInfo)
+    
+    public async Task Validation(User user)
     {
-        var validador = new UserValidador(resourceManager, cultureInfo);
-        var result = await validador.ValidateAsync(user);
-        if (result.IsValid) return;
-        throw new CustomException(string.Join(" ", result.Errors));
+        var validator =  await ValidateAsync(user);
+        if (validator.IsValid) return;
+        throw new CustomException(string.Join(" ", validator.Errors));
     }
 }

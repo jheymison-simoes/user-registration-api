@@ -8,7 +8,6 @@ using UserRegister.Application.Tests.Fixture;
 using UserRegister.Business.EntityModels;
 using UserRegister.Business.Exceptions;
 using UserRegister.Business.Models.Clients;
-using UserRegister.Business.Response;
 using Xunit;
 
 namespace UserRegister.Application.Tests.Services;
@@ -123,7 +122,6 @@ public class UserServiceTests
         // Arrange
         _userFixture.GenerateUserService();
         var createdUser = _userFixture.CreateValidUser();
-        var user = _userFixture.Mapper.Map<User>(createdUser);
         var viaCepResponse = _userFixture.CreateViaCepResponseModel();
         
         _userFixture.UserRepository.Setup(s =>
@@ -159,7 +157,7 @@ public class UserServiceTests
         var users = _userFixture.Mapper.Map<List<User>>(createdUsers);
 
         _userFixture.UserRepository.Setup(s =>
-            s.GetAll()
+            s.GetAll(It.IsAny<bool>())
         ).ReturnsAsync(users);
         
         // Act

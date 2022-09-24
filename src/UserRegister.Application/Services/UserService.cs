@@ -44,7 +44,7 @@ public class UserService : BaseService, IUserService
     
     public async Task<UserResponse> CreateUser(CreateUserModel createUser)
     {
-        await _createUserValidator.Validate(createUser, ResourceManager, CultureInfo);
+        await _createUserValidator.Validation(createUser);
         await CheckExistingUser(createUser.Cpf, createUser.Email);
         await CheckExistingPhone(createUser.UserPhones);
         var addressViaCep = await GetAndValidateAddress(createUser.Address.PostalCode);
@@ -56,7 +56,7 @@ public class UserService : BaseService, IUserService
             : addressViaCep.Bairro;
         newUser.Address.State = addressViaCep.Uf;
 
-        await _userValidador.Validate(newUser, ResourceManager, CultureInfo);
+        await _userValidador.Validation(newUser);
         
         _userRepository.Add(newUser);
         await _userRepository.SaveChanges();
@@ -66,7 +66,7 @@ public class UserService : BaseService, IUserService
 
     public async Task<List<UserResponse>> GetAll()
     {
-        var allUsers = await _userRepository.GetAll();
+        var allUsers = await _userRepository.GetAll(true);
         return !allUsers.Any()
             ? new() 
             : Mapper.Map<List<UserResponse>>(allUsers);
@@ -110,7 +110,7 @@ public class UserService : BaseService, IUserService
 
     private async Task<User> GetAndValidateUserById(Guid id, bool withInclude)
     {
-        var user = await _userRepository.GetById(id, true);
+        var user = await _userRepository.GetById(id, withInclude);
         if (user is null) ResponseError("USER-NOT_FOUND_BY_ID", id);
         return user; 
     }

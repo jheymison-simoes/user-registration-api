@@ -36,12 +36,11 @@ public class UserPhoneValidator : AbstractValidator<UserPhone>
             .MaximumLength(9)
             .WithMessage(resourceSet.GetResourceFormat("USER-PHONE-NUMBERPHONE_EXCEEDED_MAXIMUM_CHARACTER", 11));
     }
-    
-    public async Task Validate(UserPhone userPhone, ResourceManager resourceManager, CultureInfo cultureInfo)
+
+    public async Task Validation(UserPhone userPhone)
     {
-        var validador = new UserPhoneValidator(resourceManager, cultureInfo);
-        var result = await validador.ValidateAsync(userPhone);
-        if (result.IsValid) return;
-        throw new CustomException(string.Join(" ", result.Errors));
+        var validator =  await ValidateAsync(userPhone);
+        if (validator.IsValid) return;
+        throw new CustomException(string.Join(" ", validator.Errors));
     }
 }

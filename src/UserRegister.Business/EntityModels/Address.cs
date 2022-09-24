@@ -54,11 +54,10 @@ public class AddressValidator : AbstractValidator<Address>
             .WithMessage(resourceSet.GetResourceFormat("ADDRESS-STATE_EMPTY"));
     }
     
-    public async Task Validate(Address address, ResourceManager resourceManager, CultureInfo cultureInfo)
+    public async Task Validation(Address address)
     {
-        var validador = new AddressValidator(resourceManager, cultureInfo);
-        var result = await validador.ValidateAsync(address);
-        if (result.IsValid) return;
-        throw new CustomException(string.Join(" ", result.Errors));
+        var validator =  await ValidateAsync(address);
+        if (validator.IsValid) return;
+        throw new CustomException(string.Join(" ", validator.Errors));
     }
 }

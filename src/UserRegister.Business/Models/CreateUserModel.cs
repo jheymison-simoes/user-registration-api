@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Resources;
 using FluentValidation;
+using FluentValidation.Results;
 using UserRegister.Business.EntityModels;
 using UserRegister.Business.Exceptions;
 using UserRegister.Business.Utils;
@@ -66,11 +67,10 @@ public class CreateUserValidator : AbstractValidator<CreateUserModel>
             .SetValidator(new CreateUserPhoneValidator(resourceManager, cultureInfo));
     }
     
-    public async Task Validate(CreateUserModel user, ResourceManager resourceManager, CultureInfo cultureInfo)
+    public async Task Validation(CreateUserModel user)
     {
-        var validador = new CreateUserValidator(resourceManager, cultureInfo);
-        var result = await validador.ValidateAsync(user);
-        if (result.IsValid) return;
-        throw new CustomException(string.Join(" ", result.Errors));
+        var validator =  await ValidateAsync(user);
+        if (validator.IsValid) return;
+        throw new CustomException(string.Join(" ", validator.Errors));
     }
 }

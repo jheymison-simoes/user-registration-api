@@ -32,20 +32,7 @@ public static class ApiConfig
                         .AllowAnyMethod()
                         .AllowAnyHeader());
         });
-        
-        services.AddApiVersioning(p =>
-        {
-            p.DefaultApiVersion = new ApiVersion(1, 0);
-            p.ReportApiVersions = true;
-            p.AssumeDefaultVersionWhenUnspecified = true;
-        });
 
-        services.AddVersionedApiExplorer(p =>
-        {
-            p.GroupNameFormat = "'v'VVV";
-            p.SubstituteApiVersionInUrl = true;
-        });
-        
         services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
     }
     
