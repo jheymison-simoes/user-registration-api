@@ -223,6 +223,15 @@ namespace UserRegister.Api.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Não foi encontrado nenhum usuário com este id &apos;{0}&apos;..
+        /// </summary>
+        public static string USER_NOT_FOUND_BY_ID {
+            get {
+                return ResourceManager.GetString("USER-NOT_FOUND_BY_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O DDD do telefone não pode ser vazio..
         /// </summary>
         public static string USER_PHONE_DDD_EMPTY {
